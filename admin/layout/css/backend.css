@@ -1,0 +1,31 @@
+/* start Body Style */
+
+body {
+    height: 100vh;
+    background-color: beige;
+}
+
+
+
+/* End Body Style */
+
+
+/* Start Form Style */
+
+.container
+{
+    height: 100%;
+
+}
+form
+{
+    border-radius: 20px !important;
+
+}
+form input  
+{
+    margin-bottom: 15px;
+}
+
+
+/* End Form Style */

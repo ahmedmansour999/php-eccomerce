@@ -1,7 +1,8 @@
 <?php
 
 session_start() ; 
-$noNavBar = "" ;
+$noNavBar = " " ;
+$pageTitle = "login" ;
 
 if (isset($_SESSION['username'])) {
 
@@ -13,29 +14,41 @@ include "./int.php";
 
 
 
+
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $username = $_POST['user'];
     $password = $_POST['pass'];
     $hashPass = sha1($password);
 
     // Assuming $con is your database connection
-    $query = "SELECT username, password FROM users WHERE username = :username AND password = :password";
+    $query = "SELECT
+                username , password , user_id 
+                FROM users 
+                WHERE username = :username 
+                AND password = :password
+                AND groupId = '1'
+                ";
     $stmt = $con->prepare($query);
 
     // Bind parameters
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':password', $hashPass);
+    
 
     // Execute the query
     $stmt->execute();
+    $row =  $stmt->fetch();
 
     // Get the number of rows returned
     $count = $stmt->rowCount();
 
     // Check if a user with the provided credentials exists
     if ($count > 0) {
-        $_SESSION['username'] = $username;
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['ID'] = $row['user_id'];
+        $_SESSION['password'] = $row['password'];
         header('location:dashboard.php') ;
+        exit() ;
     } else {
         echo "Authentication failed";
     }

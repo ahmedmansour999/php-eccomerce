@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="layout//css/backend.css">
     
-    <title>ADMIN</title>
+    <title><?php getTitle() ?></title>
 
 </head>
 

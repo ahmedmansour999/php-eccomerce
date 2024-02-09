@@ -6,18 +6,18 @@ session_start() ;
 
 if (isset($_SESSION['username'])) {
 
-    $pageTitle = "dashboard" ;
+    $pageTitle = "members" ;
 
     include "./int.php";
-
-     
-
-    include  $tpl . "Footer.php" ;
-
     
+    include $page ; 
+
+    include  $tpl . "Footer.php"  ;
+
 }else {
 
     header('location : index.php') ;
+    exit() ; 
 
 }
 

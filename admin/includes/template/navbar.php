@@ -1,3 +1,11 @@
+ 
+<?php 
+
+  $username = $_SESSION['username']; ; 
+  
+ ?> 
+
+
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark  ">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -12,15 +20,27 @@
         <li class="nav-item">
           <a class="nav-link" href="#"><?php echo lang('CATEGORIES') ?></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><?php echo lang('ITEMS') ?></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="members.php"><?php echo lang('MEMBER') ?></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><?php echo lang('STATISITICS') ?></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><?php echo lang('LOGS') ?></a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Mans
+            <?php echo $username ?>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><?php echo lang('EDITE_PROFILE') ?></a></li>
+            <li><a class="dropdown-item" href="members.php?href=Edite&userid=<?php echo $_SESSION['ID'] ?>"><?php echo lang('EDITE_PROFILE') ?></a></li>
             <li><a class="dropdown-item" href="#"> <?php echo lang('SETTING') ?></a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#"> <?php echo lang('LOGOUT') ?></a></li>
+            <li><a class="dropdown-item" href="logout.php"> <?php echo lang('LOGOUT') ?></a></li>
           </ul>
         </li>
 

@@ -10,4 +10,14 @@ $(document).ready(function() {
     })
 
 
+    // add * to required attributes
+
+    // $('input').each(function(){
+    //     if ($(this).attr('required') === 'required') {
+    //         $(this).after('<span class="asterisk">*</span>');
+    //         $(this).css('background-color', 'red');
+    //     }
+    // });
+    
+    
 })

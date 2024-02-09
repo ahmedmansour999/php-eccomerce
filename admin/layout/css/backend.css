@@ -6,6 +6,9 @@ body {
 }
 
 
+.alert {
+    text-align: center;
+}
 
 /* End Body Style */
 
@@ -29,3 +32,13 @@ form input
 
 
 /* End Form Style */
+
+/* start Edite Style */
+
+h1
+{
+    font-size:55px ;
+}
+
+/* End Edite Style */
+

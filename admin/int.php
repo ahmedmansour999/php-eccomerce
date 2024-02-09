@@ -1,15 +1,16 @@
 <?php 
 
-    $tpl = "./includes/template/"  ; 
-
-    $english = "./includes/language/eng.php" ;
-    
-    $arabic = "./includes/language/arab.php" ;
-
     $connection = "./connection.php" ;
+    $tpl = "./includes/template/"  ; 
+    $function = "./includes/function/" ; 
+    $english = "./includes/language/eng.php" ;
+    $arabic = "./includes/language/arab.php" ;
+    $page = "./pages.php" ;
 
 
     include $connection ;
+    include $function . "function.php" ;
+   
  
 
 
@@ -22,7 +23,9 @@
         include $tpl . "navbar.php";
     }
 
-    include  $tpl . "Footer.php" 
+    
+
+
 
 
 

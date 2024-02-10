@@ -2,7 +2,7 @@
 
 body {
     height: 100vh;
-    background-color: beige;
+    background-color: '#EEE';
 }
 
 
@@ -15,14 +15,11 @@ body {
 
 /* Start Form Style */
 
-.container
-{
-    height: 100%;
 
-}
 form
 {
-    border-radius: 20px !important;
+    border-radius: 20px 0 !important;
+    
 
 }
 form input  
@@ -32,6 +29,77 @@ form input
 
 
 /* End Form Style */
+
+/* Dashbord style mark here */
+
+.home-stats  .stat 
+{
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+ 
+}
+.home-stats a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer ;
+}
+
+.home-stats .member-stat
+{
+    background-color: #023047;
+}
+
+.home-stats .pending-stat
+{
+    background-color: #fb8500;
+
+}
+.home-stats .item-stat
+{
+    background-color: #e63946;
+
+}
+.home-stats .comment-stat
+{
+    background-color: #8338ec;
+}
+
+.home-stats .stat span
+{
+
+    font-size: 60px !important;
+
+}
+
+.latest .latest-list
+{
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+    font-weight: bold;
+}
+
+.latest .latest-list .latest-item
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 0 5px;
+    width: 100%;
+    margin: 4px 0;
+}
+.latest .latest-list li:nth-child(odd)
+ {
+    background-color: #d3d3d3;
+
+}
+
+
+
+
+/* End Dashbord style */
 
 /* start Edite Style */
 

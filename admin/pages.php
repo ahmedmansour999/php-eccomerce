@@ -103,7 +103,7 @@ if ($href == 'Manage') { ?>
         </div>
     </div>
 
-    <?PHP
+<?PHP
 
 } elseif ($href == "insert") {
 
@@ -329,7 +329,7 @@ if ($href == 'Manage') { ?>
 }
  elseif ($href == "delete") {
 
-    echo "<h1 class='text-center'> Update Member  </h1>";
+    echo "<h1 class='text-center'> Delete Member  </h1>";
     echo "<div class='container text-center'> ";
 
     $user_id = (isset($_GET['userid']) && is_numeric($_GET['userid'])) ? intval($_GET['userid']) : 0;
@@ -349,7 +349,7 @@ if ($href == 'Manage') { ?>
     }
 }
 elseif ($href == "active") {
-    echo "<h1 class='text-center'> Update Member  </h1>";
+    echo "<h1 class='text-center'> Active Member  </h1>";
     echo "<div class='container text-center'> ";
 
     $user_id = (isset($_GET['userid']) && is_numeric($_GET['userid'])) ? intval($_GET['userid']) : 0;

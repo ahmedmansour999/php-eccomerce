@@ -18,7 +18,7 @@
           <a class="nav-link " aria-current="page" href="dashboard.php"><?php echo lang('HOME') ?></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><?php echo lang('CATEGORIES') ?></a>
+          <a class="nav-link" href="categories.php"><?php echo lang('CATEGORIES') ?></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><?php echo lang('ITEMS') ?></a>

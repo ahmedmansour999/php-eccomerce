@@ -22,15 +22,15 @@ function getTitle()
      * $sec = secound Before redirect
     */
 
-function HomeRedirect($errorMsg, $url = null, $sec = 2)
+function HomeRedirect($errorMsg, $url = null, $sec = 5)
 {
 
     if ($url === null) {
 
-        $url = "dashboard.php";
+        $url =  "dashboard.php";
     } else {
 
-        if ($_SERVER['HTTP_REFERER'] && $_SERVER['HTTP_REFERER'] !== "") {
+        if ($_SERVER['HTTP_REFERER'] && $_SERVER['HTTP_REFERER'] !== " ") {
 
             $url = $_SERVER['HTTP_REFERER'];
         }
@@ -108,4 +108,18 @@ function getLatest($select, $table, $order, $limit = 5)
     $latestStmt->execute();
     $row = $latestStmt->fetchAll();
     return $row;
+}
+
+
+function runQuery($query ){
+    $stmt = stmt($query) ;
+    $row = $stmt->fetchAll();
+    return $row;
+}
+
+function stmt($query){
+    global $con;
+    $stmt = $con->prepare($query);
+    $stmt->execute();
+    return $stmt;
 }

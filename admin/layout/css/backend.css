@@ -103,8 +103,49 @@ form input
     flex-wrap: wrap;
 }
 
- .options .sorting{
-    direction: rtl;
+
+
+.cat-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cat-header .options  {
+    display: flex;
+}
+
+.cat-header .options div {
+    margin: 0 5px;
+    cursor: default;
+}
+.cat-header .options div a {
+    padding:3px;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.active {
+    background-color: blueviolet;
+    color: white;
+    border-radius: 5px;
+
+}
+
+.foot  i {
+    margin-right: 8px !important ; 
+}
+
+.foot a 
+{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+
+.options.sorting .ordering
+{
+    direction: ltr;
 }
 
 .cat-container .cat {
@@ -114,8 +155,7 @@ form input
     margin-top: 10px;
     margin-bottom: 10px;
     overflow: hidden;
-    background-color: #EEE;
-    display: flex;
+    align-items: stretch;
 }
 
 .container .head {
@@ -124,10 +164,15 @@ form input
     align-items: center;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
+
 .container .body {
     padding: 10px;
     width: 100%;
+    background-color: #EEE;
+    display: none;
+
 }
 .container .body .no {
     background-color: red;
@@ -156,30 +201,40 @@ form input
 }
 .cat-container .cat .head h3 {
     color: white;
-    padding-bottom: 10px;
-
 }
 .cat-container .cat .foot {
     position: absolute;
-    bottom:10px ;
-    right: -26px;
+    display: none;
+    top: 10px;
+    right: -180px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     transition: all .5s ease-in-out;
+    align-items: center;
 }
 .cat-container .cat:hover .foot {
-    right: 10px;
+    right: 8px;
 }
 .cat-container .cat .foot i{
-    padding: 5px;
+    padding: 2px 2px 2px 5px;
     border-radius: 20px;
 }
 .cat-container .cat .foot .edite{
-    background-color: gold;
+    background-color: rgb(32, 32, 253);
     color: white !important;
+    padding: 0 5px;
+    border-radius: 10px;
 }
 .cat-container .cat .foot .del{
     background-color: red;
+    color: white !important;
+    margin: 5px 0;
+    padding: 0 5px;
+    border-radius : 10px ;
+    margin: 0 0 0 8px;
+}
+.cat-container .cat .foot .add{
+    background-color: black !important;
     color: white !important;
     margin: 5px 0;
 

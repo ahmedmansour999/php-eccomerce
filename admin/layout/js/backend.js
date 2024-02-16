@@ -49,4 +49,26 @@ $(document).ready(function () {
       passField.attr("type", "password");
     }
   });
+
+
+
+  $(".cat .head").click(function() {    
+    $(this).next(".cat .body").fadeToggle(100); 
+
+  });
+  
+
+
+
+
+  $('.view a').click(function() {
+    $(this).addClass('active').siblings('a').removeClass('active') ;
+    if ($(this).data('view') == "full") {
+      $(".cat .body").fadeIn(100);
+    } else{
+      $('.cat .body').fadeOut(100);
+    }
+  })
+
+
 });

@@ -75,7 +75,10 @@ if (isset($_SESSION["username"])) {
                                 <td><?php echo $row['category'] ?></td>
                                 <td> 
                                         <a href="?href=Edite&itemid=<?php echo $row['Item_id'] ?>" class="btn btn-warning"><i class="fas fa-pen-fancy px-1 text-dark"></i>Edite</a>
-                                        <a href="?href=delete&itemid=<?php echo $row['Item_id'] ?>" class="btn btn-danger confirm"><i class="fas fa-trash px-1"></i>delete</a>
+                                        <a href="?href=delete&itemid=<?php echo $row['Item_id'] ?>" class="btn btn-danger confirm"><i class="fas fa-trash px-1"></i>Delete</a>
+                                    <?php if ($row['approve'] == '0' ) { ?>
+                                        <a href="?href=approve&itemid=<?php echo $row['Item_id'] ?>" class="btn btn-primary"><i class="fas fa-check px-1"></i>Approve</a>                                        
+                                    <?php } ?>
                                 </td>
                             </tr>
                         <?php  } ?>
@@ -361,6 +364,8 @@ if (isset($_SESSION["username"])) {
                 HomeRedirect($errorMsg , 'items.php');
             } ?>
     <?php }
+
+    // Update Items
     elseif($href == 'update')
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -467,11 +472,47 @@ if (isset($_SESSION["username"])) {
             HomeRedirect($errorMsg);
         }
     }
+
+    // Delete Items
     elseif($href == 'delete')
     {
-        echo 'delete' ;
+        echo "<h1 class='text-center'> Delete Item  </h1>";
+        echo "<div class='container text-center'> ";
+    
+        $item_id = (isset($_GET['itemid']) && is_numeric($_GET['itemid'])) ? intval($_GET['itemid']) : 0;
+        $query = "DELETE FROM items WHERE Item_id = '$item_id' ";
+        
+        $stmt =  stmt($query) ;
+        $count = $stmt->rowCount() ;
+    
+        if ($count > 0) {
+    
+            $theMsg = '<div class="alert alert-primary"> Deleted </div> ';
+            HomeRedirect($theMsg , 'back');
+        } else {
+            $theMsg = '<div class="alert alert-danger"> ID not Exist </div>';
+            HomeRedirect($theMsg , 'back');
+        }
     }
 
+    // approve item
+    else if($href == 'approve'){
+        echo "<h1 class='text-center'> approve Member  </h1>";
+        echo "<div class='container text-center'> ";
+    
+        $item_id = (isset($_GET['itemid']) && is_numeric($_GET['itemid'])) ? intval($_GET['itemid']) : 0;
+        $query = "UPDATE items SET approve = '1' WHERE item_id = '$item_id' ";
+        $stmt = stmt($query) ;
+        $count = $stmt->rowCount();
+        if ($count > 0) {
+    
+            $theMsg = '<div class="alert alert-primary"> approved </div> ';
+            HomeRedirect($theMsg , 'back');
+        } else {
+            $theMsg = '<div class="alert alert-danger"> ID not Exist </div>';
+            HomeRedirect($theMsg , 'back');
+        }
+    };
 
     include $tpl . "footer.php";
 

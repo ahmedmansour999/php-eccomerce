@@ -1,5 +1,9 @@
 <?php
 
+
+
+
+
 // title function 
 
 function getTitle()
@@ -103,7 +107,7 @@ function getLatest($select, $table, $order, $limit = 5)
 {
 
     global $con;
-    $query = "SELECT $select FROM $table WHERE groupId = '0' ORDER BY $order DESC LIMIT $limit";
+    $query = "SELECT $select FROM $table  ORDER BY $order DESC LIMIT $limit";
     $latestStmt = $con->prepare($query);
     $latestStmt->execute();
     $row = $latestStmt->fetchAll();

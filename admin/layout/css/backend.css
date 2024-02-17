@@ -38,8 +38,21 @@ form input
     color: white;
     font-weight: bold;
     padding: 20px;
- 
+    position: relative;
+    height: 100%;
 }
+
+.stat i {
+    float: left;
+    position: absolute;
+    left: 30px;
+    top: 28%;
+    font-size: 80px;
+}
+.stat .info{
+    float: right;
+}
+
 .home-stats a {
     text-decoration: none;
     color: white;

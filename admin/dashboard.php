@@ -9,8 +9,12 @@ if (isset($_SESSION['username'])) {
 
     include "./int.php";
 
-    $latestUserNum = 5 ;
+    $latestUserNum = 6 ;
     $latestUser = getLatest("*" , "users" , "user_id" , $latestUserNum ) ;
+
+
+    $latestitemsNum = 6 ;
+    $latestItems = getLatest( '*' , 'items' , 'Item_id' , $latestitemsNum)
     
 
 
@@ -27,41 +31,53 @@ if (isset($_SESSION['username'])) {
 
             <div class="col-md-3">
                 <div class="stat member-stat">
-                    total members
-                    <span class="d-block ">
-                        <a href="members.php?href=Manage">
-                            <?php echo checkItem("groupId" , "users" , "0") ?>
-                        </a>
-                    </span>
+                    <i class="fas fa-users"></i>
+                    <div class="info">
+                        total members
+                        <span class="d-block ">
+                            <a href="members.php?href=Manage">
+                                <?php echo checkItem("groupId" , "users" , "0") ?>
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="stat pending-stat">
-                    pending members
-                    <span class="d-block ">
-                        <a href="members.php?href=Manage&page=pending">
-                            <?php echo checkItem("regStatus" , "users" , 0) ?>
-                        </a>
-                    </span>
+                    <i class="fas fa-user-plus"></i>
+                    <div class="info">
+                        pending members
+                        <span class="d-block ">
+                            <a href="members.php?href=Manage&page=pending">
+                                <?php echo checkItem("regStatus" , "users" , 0) ?>
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="stat item-stat">
-                    total items
-                    <span class="d-block ">
-                        <a href="items.php?">
-                            <?php echo countItem("name" , "items" ) ?>
-                        </a>
-                    </span>
+                    <i class="fas fa-tag"></i>
+                    <div class="info">
+                        total items
+                        <span class="d-block ">
+                            <a href="items.php?">
+                                <?php echo countItem("name" , "items" ) ?>
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="stat comment-stat">
-                    total Comments
-                    <span class="d-block ">5503</span>
+                    <i class="fas fa-comments"></i>
+                    <div class="info">
+                        total Comments
+                    <span class="d-block ">0</span>
+                    </div>
                 </div>
             </div>
 
@@ -106,7 +122,23 @@ if (isset($_SESSION['username'])) {
                         <i class="fa fa-tag"></i> Latest Item
                     </div>
                     <div class="card-body">
-                        tets
+                    <?php
+                            echo '<ul class="latest-list" >' ;    
+                                foreach ($latestItems as $item){
+                                    echo "<li class='latest-item text-capitalize'>" ;
+                                        echo $item['Name']    ;
+                                        echo "<div>" ;
+                                            echo '<a class="btn btn-warning pull-right" href="members.php?href=Edite&itemid=' . $item["Item_id"] . '" >' ;
+                                                echo " <i class='fas fa-pen me-2'> " ;
+                                            echo "</i>Edite</a>" ;
+                                            if ($item['approve'] == 0){
+                                            echo '<a href="items.php?href=approve&itemid=' . $item["Item_id"] . '" class="btn btn-primary ms-2 "><i class="fas fa-check mx-1"></i>Approve</a>' ;
+                                            }
+                                        echo "</div>" ;
+                                    echo "</li>";
+                                }
+                            echo '<ul>' ;
+                        ?>
                     </div>
                 </div>
             </div>

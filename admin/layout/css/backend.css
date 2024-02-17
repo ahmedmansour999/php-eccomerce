@@ -240,6 +240,42 @@ form input
 
 }
 
+/* items style mark here */
+
+.items-container
+{
+    margin: auto auto !important;
+}
+.items-container .input-group 
+{
+    justify-content: center;
+    margin: 15px 0 ;
+}
+
+
+.items form .input-group  input ,
+ .items form .input-group textarea ,
+ .items form .input-group select
+{
+    border: none;
+    background-color: #EEE;
+    width: 70%;
+    padding: 15px;
+}
+
+.items form .input-group label
+{
+    background-color: black;
+    color: white;
+    min-width: 105px;
+}
+
+.items form.input-group  input:focus
+{
+    border: 1px solid gold;
+    outline: none;
+    background-color: black;
+}
 
 
 

@@ -28,21 +28,33 @@ if (isset($_SESSION['username'])) {
             <div class="col-md-3">
                 <div class="stat member-stat">
                     total members
-                    <span class="d-block "><a href="members.php?href=Manage"><?php echo checkItem("groupId" , "users" , "0") ?></a></span>
+                    <span class="d-block ">
+                        <a href="members.php?href=Manage">
+                            <?php echo checkItem("groupId" , "users" , "0") ?>
+                        </a>
+                    </span>
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="stat pending-stat">
                     pending members
-                    <span class="d-block "><a href="members.php?href=Manage&page=pending"><?php echo checkItem("regStatus" , "users" , 0) ?></a></span>
+                    <span class="d-block ">
+                        <a href="members.php?href=Manage&page=pending">
+                            <?php echo checkItem("regStatus" , "users" , 0) ?>
+                        </a>
+                    </span>
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="stat item-stat">
                     total items
-                    <span class="d-block ">1500</span>
+                    <span class="d-block ">
+                        <a href="items.php?">
+                            <?php echo countItem("name" , "items" ) ?>
+                        </a>
+                    </span>
                 </div>
             </div>
 

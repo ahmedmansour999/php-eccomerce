@@ -9,6 +9,21 @@ $(document).ready(function () {
     });
 
 
+
+    /*
+      -Show more 
+      _Show Less
+    */
+      $(document).on('click', '.card-header .toggleSpan', function() {
+        $(this).toggleClass('selected').parent().next('.card-body').fadeToggle(100);
+        if ($(this).hasClass('selected')) {
+            $(this).html('<i class="fas fa-minus toggle"></i>');
+        } else {
+            $(this).html('<i class="fas fa-plus toggle"></i>');
+        }
+      });
+
+
   // /*
   //   add * to required attributes
   // */

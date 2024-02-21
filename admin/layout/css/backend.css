@@ -59,6 +59,12 @@ form input
     cursor: pointer ;
 }
 
+.container .toggle{
+    float: right;
+    cursor: pointer;
+    margin-top: 4px;
+}
+
 .home-stats .member-stat
 {
     background-color: #023047;

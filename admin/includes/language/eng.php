@@ -13,6 +13,7 @@ function lang($param)
         "ITEMS"              =>   'Items',
         'MEMBER'              =>  'Members',
         "STATISITICS"        => "Statistics",
+        "COMMENTS"             => "Comments",
         "LOGS"                => 'Logs',
         "EDITE_PROFILE"      => "Edite Profile",
         "SETTING"            => "Setting",

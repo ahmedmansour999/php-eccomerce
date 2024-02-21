@@ -26,7 +26,7 @@ function getTitle()
      * $sec = secound Before redirect
     */
 
-function HomeRedirect($errorMsg, $url = null, $sec = 5)
+function HomeRedirect($errorMsg, $url = null, $sec = 3)
 {
 
     if ($url === null) {

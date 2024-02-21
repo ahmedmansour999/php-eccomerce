@@ -91,8 +91,11 @@ if (isset($_SESSION['username'])) {
 
             <div class="col-sm-6">
                 <div class="card card-default">
-                    <div class="card-header text-center ">
+                    <div class="card-header  ">
                         <i class="fa fa-user"></i> Latest User
+                        <span class="toggleSpan">
+                            <i class="fas fa-plus toggle" ></i>
+                        </span>
                     </div>
                     <div class="card-body">
                         <?php
@@ -120,6 +123,9 @@ if (isset($_SESSION['username'])) {
                 <div class="card card-default">
                     <div class="card-header text-center ">
                         <i class="fa fa-tag"></i> Latest Item
+                        <span class="toggleSpan">
+                            <i class="fas fa-plus toggle" ></i>
+                        </span>
                     </div>
                     <div class="card-body">
                     <?php

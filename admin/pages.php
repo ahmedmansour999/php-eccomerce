@@ -359,7 +359,7 @@ elseif ($href == "active") {
     $count = $stmt->rowCount();
     if ($count > 0) {
 
-        $theMsg = '<div class="alert alert-primary"> Updated </div> ';
+        $theMsg = '<div class="alert alert-primary"> Active </div> ';
         HomeRedirect($theMsg);
     } else {
         $theMsg = '<div class="alert alert-danger"> ID not Exist </div>';

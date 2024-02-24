@@ -1,0 +1,51 @@
+
+/* global Style */
+
+h1
+{
+    color: #6e6969 !important;
+    cursor: auto;
+}
+
+
+.alert 
+{
+    text-align: center;
+}
+
+
+
+/* start Body Style */
+
+
+body 
+{
+    height: 100vh;
+}
+
+
+/* Items of Category   */
+
+
+.container .card .items-container
+{
+    position: relative;
+}
+
+ .items-container .item-price
+{
+    position: absolute;
+    background-color: firebrick;
+    padding: 5px;
+    top: 11px;
+    color: white;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+

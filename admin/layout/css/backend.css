@@ -1,16 +1,23 @@
+
+
 /* start Body Style */
 
-body {
+
+body 
+{
     height: 100vh;
-    background-color: '#EEE';
 }
 
 
-.alert {
+.alert 
+{
     text-align: center;
 }
 
+
+
 /* End Body Style */
+
 
 
 /* Start Form Style */
@@ -31,6 +38,8 @@ form input
 /* End Form Style */
 
 /* Dashbord style mark here */
+
+/* latest  */
 
 .home-stats  .stat 
 {
@@ -100,6 +109,7 @@ form input
     font-weight: bold;
 }
 
+
 .latest .latest-list .latest-item
 {
     display: flex;
@@ -114,6 +124,15 @@ form input
     background-color: #d3d3d3;
 
 }
+
+ .latest .card-default .latest-comment{
+    position: relative;
+    list-style: none;
+}
+
+/* end latest */
+
+/* ######################################################################## */
 
 /* categories */
 
@@ -259,6 +278,8 @@ form input
 
 }
 
+/* ############################################################# */
+
 /* items style mark here */
 
 .items-container
@@ -300,7 +321,7 @@ form input
 
 
 /* End Dashbord style */
-
+/* ##################################################################################### */
 /* start Edite Style */
 
 h1

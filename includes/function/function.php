@@ -1,5 +1,46 @@
 <?php
 
+// FRONT END FUNCTION
+
+/* 
+    - get all categoris 
+*/
+
+function getCat(){
+
+    global $con ;
+    $stmt = $con->prepare('SELECT * FROM categories ORDER BY ID ASC') ;
+    $stmt->execute() ;
+    $row = $stmt->fetchall() ; 
+    return $row ;
+
+}
+
+
+/* 
+    - get items of Categories 
+*/
+function getItems($id){
+
+    global $con ;
+    $stmt = $con->prepare("SELECT * FROM items Where cat_id = '$id' ORDER BY item_id ASC  ") ;
+    $stmt->execute() ;
+    $row = $stmt->fetchall() ; 
+    return $row ;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

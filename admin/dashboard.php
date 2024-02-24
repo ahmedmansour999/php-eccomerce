@@ -10,11 +10,11 @@ if (isset($_SESSION['username'])) {
     include "./int.php";
 
     $latestUserNum = 6 ;
-    $latestUser = getLatest("*" , "users" , "user_id" , $latestUserNum ) ;
+    $latestUser = getLatest("*" , "users" ,  "WHERE groupId = '0'" , "user_id" , $latestUserNum ) ;
 
 
     $latestitemsNum = 6 ;
-    $latestItems = getLatest( '*' , 'items' , 'Item_id' , $latestitemsNum)
+    $latestItems = getLatest( '*' , 'items'  , 'Item_id' , $latestitemsNum)
     
 
 
@@ -31,7 +31,7 @@ if (isset($_SESSION['username'])) {
 
             <div class="col-md-3">
                 <div class="stat member-stat">
-                    <i class="fas fa-users"></i>
+                <a href="members.php"><i class="fas fa-users"></i></a>
                     <div class="info">
                         total members
                         <span class="d-block ">
@@ -45,7 +45,7 @@ if (isset($_SESSION['username'])) {
 
             <div class="col-md-3">
                 <div class="stat pending-stat">
-                    <i class="fas fa-user-plus"></i>
+                <a href="members.php?href=Manage&page=pending"><i class="fas fa-user-plus"></i></a>
                     <div class="info">
                         pending members
                         <span class="d-block ">
@@ -59,7 +59,7 @@ if (isset($_SESSION['username'])) {
 
             <div class="col-md-3">
                 <div class="stat item-stat">
-                    <i class="fas fa-tag"></i>
+                <a href="items.php?"><i class="fas fa-tag"></i></a>
                     <div class="info">
                         total items
                         <span class="d-block ">
@@ -73,11 +73,16 @@ if (isset($_SESSION['username'])) {
 
             <div class="col-md-3">
                 <div class="stat comment-stat">
-                    <i class="fas fa-comments"></i>
+                    <a href="comments.php"> <i class="fas fa-comments"></i> </a>
                     <div class="info">
                         total Comments
-                    <span class="d-block ">0</span>
+                        <span class="d-block ">
+                            <a href="items.php?">
+                                <?php echo countItem("comment" , "comments" ) ?>
+                            </a>
+                        </span>
                     </div>
+                    
                 </div>
             </div>
 
@@ -85,10 +90,12 @@ if (isset($_SESSION['username'])) {
 
     </div>
 
+    <!-- /* Start Latest Item And Users And Comments mark here */ -->
     <div class="container latest mt-4">
 
+        <!-- Start latest User and Item -->
         <div class="row">
-
+            <!-- latest Users -->
             <div class="col-sm-6">
                 <div class="card card-default">
                     <div class="card-header  ">
@@ -119,6 +126,7 @@ if (isset($_SESSION['username'])) {
                 </div>
             </div>
 
+            <!-- latest Item -->
             <div class="col-sm-6">
                 <div class="card card-default">
                     <div class="card-header text-center ">
@@ -150,7 +158,53 @@ if (isset($_SESSION['username'])) {
             </div>
 
         </div>
+         <!--End latest User and Item -->
+        <!--start latest Comments -->
+        <div class="row">
+            <!-- latest Users -->
+            <div class="col-sm-6">
+                <div class="card card-default">
+                    <div class="card-header  ">
+                        <i class="fa fa-user"></i> Latest Comments
+                        <span class="toggleSpan">
+                            <i class="fas fa-plus toggle" ></i>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <ul class="latest-comment" id="aa" >
+                            <?php
+                                $query = "SELECT comments.* , users.fullName AS member
+                                        FROM 
+                                            comments 
+                                        INNER JOIN
+                                            users
+                                        ON
+                                            comments.user_id = users.user_id
+                                        ORDER BY 
+                                            id DESc
+                                " ;
+                                $stmt = $con->prepare($query) ;
+                                $stmt->execute() ;
+                                $comments = $stmt->fetchAll() ;
+                                if(! empty($comments)){ 
+                                    
+                                    foreach($comments  as $comment ){
+                                    ?>
+
+                                        <li class="list-comment text-capitalize"> 
+                                            <span class="member-n" ><?php echo $comment['member'] ?></span>
+                                            <p class="member-c" > <?php echo $comment['comment'] ?></p>
+                                        </li>
+
+                                <?php }}
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        <!--End latest Comments -->
     </div>
+    <!-- /* End Latest Item And Users And Comments   */ -->
     <!-- /* End Dashboard Component */ -->
 
 <?php

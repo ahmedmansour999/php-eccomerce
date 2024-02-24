@@ -284,7 +284,7 @@ if (isset($_SESSION["username"])) {
         if ($count > 0) {
      ?>
             <div class="container items-container">
-                        <h1 class="text-center">Add Items</h1>
+                        <h1 class="text-center">Edite Items <span class="text-warning"><?php echo $row['Name'] ?></span> </h1>
                         <div class="items">
                             <form action="?href=update" method="post">
                                 <div class="input-group">
@@ -348,6 +348,57 @@ if (isset($_SESSION["username"])) {
                                 </div>
                             </form>
                         </div>
+                        
+                        <!-- show Comments In Item -->
+                        <?php
+                            $query = "SELECT comments.* , users.fullName 
+                                        FROM 
+                                            comments 
+                                        INNER JOIN 
+                                            users
+                                        ON 
+                                            comments.user_id = users.user_id 
+                                        where item_id = '$item_id' ";
+
+                            $stmt = $con->prepare($query);
+                            $stmt->execute();
+                            $comment = $stmt->fetch() ;
+
+                            if(!empty($comment)){ 
+                        ?>                           
+                            <h1 class="text-center m-3"> Manage Comments</h1>
+                            <div class="container">
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Comment</th>
+                                                <th>Member Name</th>
+                                                <th>Date</th>
+                                                <th>control</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php while ($comment = $stmt->fetch()) { ?>
+                                                <tr>
+                                                    <td><?php echo $comment['comment'] ?></td>
+                                                    <td><?php echo $comment['fullName'] ?></td>
+                                                    <td><?php echo $comment['date'] ?></td>
+                                                    <td class="text-nowrap" >
+                                                    <a href="?href=Edite&id=<?php echo $comment['id'] ?>" class="btn btn-warning"><i class="fas fa-pen-fancy px-1 text-dark"></i>Edite</a>
+                                                    <a href="?href=delete&id=<?php echo $comment['id'] ?>" class="btn btn-danger confirm"><i class="fas fa-trash px-1"></i>delete</a>
+                                                    <?php if ($comment['status'] == 0) { ?>
+                                                            <a href="?href=accept&id=<?php echo $comment['id'] ?>" class="btn btn-primary "><i class="fas fa-check mx-1"></i>Accept</a>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                            <?php  } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    <?php } ?>    
             </div>
 
             <?php } else{

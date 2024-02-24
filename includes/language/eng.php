@@ -17,7 +17,6 @@ function lang($param)
         "LOGS"                => 'Logs',
         "EDITE_PROFILE"      => "Edite Profile",
         "SETTING"            => "Setting",
-        "SHOP"            => "Shop",
         "LOGOUT"             => "Logout",
         "" => "",
 

@@ -69,41 +69,41 @@ if ($href == 'Manage') { ?>
 
 } elseif ($href == "add") {
 
-?>
+    ?>
 
 
 
-    <div class="add ">
-        <h1 class="text-center text-dark">Add New Member</h1>
-        <div class="container fw-bold  text-center  ">
-            <form class="form-horizontal" action="?href=insert" method="POST">
-                <div class="form-group form-group-lg">
-                    <label class="col-sm-2 control-label">User Name</label>
-                    <input name="username" type="text" class=" col-sm-10 col-md-5" required="required" placeholder="User Name">
-                </div>
-                <div class="form-group form-group-lg">
-                    <label class="col-sm-2 control-label">Email</label>
-                    <input name="email" type="text" class="col-sm-10 col-md-5" required="required" placeholder="Email">
-                </div>
-                <div class="form-group form-group-lg ">
-                    <label class="col-sm-2 control-label">password</label>
-                    <input name="password" type="password" class="password col-sm-10 col-md-5" required="required" placeholder="Password">
-                    <a class="show-pass position-absolute"><i class=" fas fa-eye text-dark"></i></a>
-                </div>
-                <div class="form-group form-group-lg">
-                    <label class="col-sm-2 control-label">Full Name</label>
-                    <input name="full" type="text" class="col-sm-10 col-md-5" required="required" placeholder="Full Name">
-                </div>
-                <div class="form-group form-group-lg ">
-                    <div class="offset-2 col-sm-10  ">
-                        <input type="submit" value="Add" class="btn btn-primary ">
+        <div class="add ">
+            <h1 class="text-center text-dark">Add New Member</h1>
+            <div class="container fw-bold  text-center  ">
+                <form class="form-horizontal" action="?href=insert" method="POST">
+                    <div class="form-group form-group-lg">
+                        <label class="col-sm-2 control-label">User Name</label>
+                        <input name="username" type="text" class=" col-sm-10 col-md-5" required="required" placeholder="User Name">
                     </div>
-                </div>
-            </form>
+                    <div class="form-group form-group-lg">
+                        <label class="col-sm-2 control-label">Email</label>
+                        <input name="email" type="text" class="col-sm-10 col-md-5" required="required" placeholder="Email">
+                    </div>
+                    <div class="form-group form-group-lg ">
+                        <label class="col-sm-2 control-label">password</label>
+                        <input name="password" type="password" class="password col-sm-10 col-md-5" required="required" placeholder="Password">
+                        <a class="show-pass position-absolute"><i class=" fas fa-eye text-dark"></i></a>
+                    </div>
+                    <div class="form-group form-group-lg">
+                        <label class="col-sm-2 control-label">Full Name</label>
+                        <input name="full" type="text" class="col-sm-10 col-md-5" required="required" placeholder="Full Name">
+                    </div>
+                    <div class="form-group form-group-lg ">
+                        <div class="offset-2 col-sm-10  ">
+                            <input type="submit" value="Add" class="btn btn-primary ">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-<?PHP
+    <?PHP
 
 } elseif ($href == "insert") {
 
@@ -213,44 +213,44 @@ if ($href == 'Manage') { ?>
     $count = $stmt->rowCount();
 
     if ($count > 0) {
-    ?>
+        ?>
 
-        <div class="details ">
-            <h1 class="text-center">Edite Member</h1>
-            <div class="container fw-bold  text-center  ">
-                <form class="form-horizontal" action="?href=Update" method="POST">
-                    <input type="hidden" name="userid" value="<?php echo $row['user_id'] ?>">
-                    <div class="form-group form-group-lg">
-                        <label class="col-sm-2 control-label">User Name</label>
-                        <input name="username" type="text" class=" col-sm-10 col-md-5" value="<?php echo $row["username"] ?>" required="required">
-                    </div>
-                    <div class="form-group form-group-lg">
-                        <label class="col-sm-2 control-label">Email</label>
-                        <input name="email" type="text" class="col-sm-10 col-md-5" value="<?php echo $row["email"] ?>" required="required">
-                    </div>
-                    <div class="form-group form-group-lg">
-                        <label class="col-sm-2 control-label">password</label>
-                        <input name="password" type="text" class="col-sm-10 col-md-5" value="<?php echo $row['password'] ?>" required="required">
-                        <input name="oldPassword" type="hidden" value="<?php echo $row['password'] ?>">
-                    </div>
-                    <div class="form-group form-group-lg">
-                        <label class="col-sm-2 control-label">Full Name</label>
-                        <input name="full" type="text" class="col-sm-10 col-md-5" value="<?php echo $row["fullName"] ?>" required="required">
-                    </div>
-                    <div class="form-group form-group-lg ">
-                        <div class="offset-2 col-sm-10  ">
-                            <input type="submit" value="Save" class="btn btn-primary ">
+            <div class="details ">
+                <h1 class="text-center">Edite Member</h1>
+                <div class="container fw-bold  text-center  ">
+                    <form class="form-horizontal" action="?href=Update" method="POST">
+                        <input type="hidden" name="userid" value="<?php echo $row['user_id'] ?>">
+                        <div class="form-group form-group-lg">
+                            <label class="col-sm-2 control-label">User Name</label>
+                            <input name="username" type="text" class=" col-sm-10 col-md-5" value="<?php echo $row["username"] ?>" required="required">
                         </div>
-                    </div>
-                </form>
+                        <div class="form-group form-group-lg">
+                            <label class="col-sm-2 control-label">Email</label>
+                            <input name="email" type="text" class="col-sm-10 col-md-5" value="<?php echo $row["email"] ?>" required="required">
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="col-sm-2 control-label">password</label>
+                            <input name="password" type="text" class="col-sm-10 col-md-5" value="<?php echo $row['password'] ?>" required="required">
+                            <input name="oldPassword" type="hidden" value="<?php echo $row['password'] ?>">
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="col-sm-2 control-label">Full Name</label>
+                            <input name="full" type="text" class="col-sm-10 col-md-5" value="<?php echo $row["fullName"] ?>" required="required">
+                        </div>
+                        <div class="form-group form-group-lg ">
+                            <div class="offset-2 col-sm-10  ">
+                                <input type="submit" value="Save" class="btn btn-primary ">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
 
-<?PHP
+        <?PHP
 
-    } else {
-        header('location:index.php');
-    }
+        } else {
+            header('location:index.php');
+        }
 }
  elseif ($href == "Update") {
 
@@ -303,7 +303,21 @@ if ($href == 'Manage') { ?>
 
             // Check if Usename is already registered 
 
-            $count = checkItem('username', 'users', $username);
+            $stmt = $con->prepare("SELECT * FROM users
+
+                                    WHERE 
+
+                                        username = '$username' 
+
+                                    AND 
+
+                                        user_id != '$userid'
+                                        
+                                    ") ;
+
+            $stmt->execute() ;
+            $count = $stmt->rowCount();
+
             if ($count > 0) {
                 echo "<div class='alert alert-danger text-center'> Username Already Exist </div>";
             } else {
@@ -326,7 +340,7 @@ if ($href == 'Manage') { ?>
         $theMsg = '<div class="alert alert-danger"> No Denied To Update Members</div> ';
         HomeRedirect($theMsg);
     }
-}
+    }
  elseif ($href == "delete") {
 
     echo "<h1 class='text-center'> Delete Member  </h1>";
@@ -347,7 +361,7 @@ if ($href == 'Manage') { ?>
         $theMsg = '<div class="alert alert-danger"> ID not Exist </div>';
         HomeRedirect($theMsg);
     }
-}
+    }
 elseif ($href == "active") {
     echo "<h1 class='text-center'> Active Member  </h1>";
     echo "<div class='container text-center'> ";

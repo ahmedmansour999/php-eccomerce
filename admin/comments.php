@@ -185,15 +185,16 @@ if (isset($_SESSION['username'])) {
         echo "<h1 class='text-center'> Active Member  </h1>";
         echo "<div class='container text-center'> ";
 
-        $user_id = (isset($_GET['userid']) && is_numeric($_GET['userid'])) ? intval($_GET['userid']) : 0;
-        $query = 'UPDATE users SET regStatus = 1 WHERE user_id = ?';
+        $id = (isset($_GET['id']) && is_numeric($_GET['id'])) ? intval($_GET['id']) : 0;
+        $query = "UPDATE users SET status = 1 WHERE id = '$id'";
         $stmt = $con->prepare($query);
-        $stmt->execute(array($user_id));
         $count = $stmt->rowCount();
+
         if ($count > 0) {
 
             $theMsg = '<div class="alert alert-primary"> Active </div> ';
             HomeRedirect($theMsg);
+
         } else {
             $theMsg = '<div class="alert alert-danger"> ID not Exist </div>';
             HomeRedirect($theMsg);

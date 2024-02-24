@@ -13,7 +13,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="app-nav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
         <li class="nav-item">
           <a class="nav-link " aria-current="page" href="dashboard.php"><?php echo lang('HOME') ?></a>
         </li>
@@ -27,19 +27,17 @@
           <a class="nav-link" href="members.php"><?php echo lang('MEMBER') ?></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><?php echo lang('STATISITICS') ?></a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="comments.php"><?php echo lang('COMMENTS') ?></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><?php echo lang('LOGS') ?></a>
+          <a class="nav-link" href="../index.php"><?php echo lang('SHOP') ?></a>
         </li>
-        <li class="nav-item dropdown">
+
+        <li class="nav-item dropdown float-right">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $username ?>
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu ">
             <li><a class="dropdown-item" href="members.php?href=Edite&userid=<?php echo $_SESSION['ID'] ?>"><?php echo lang('EDITE_PROFILE') ?></a></li>
             <li><a class="dropdown-item" href="#"> <?php echo lang('SETTING') ?></a></li>
             <li><hr class="dropdown-divider"></li>

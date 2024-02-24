@@ -1,9 +1,8 @@
 <?php
-
+session_start() ;
 
 
 include "./int.php"; 
-
 
 
 

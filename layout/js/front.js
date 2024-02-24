@@ -86,4 +86,26 @@ $(document).ready(function () {
   })
 
 
+
+
+
+// front end 
+
+/*
+    - login page (Login | register) 
+*/
+
+
+$('.auth-container h1 span').click(function(){
+
+  $(this).addClass('active').siblings().removeClass('active');
+
+  $('.auth-container form').hide()
+
+  $("." + $(this).data('class')).fadeIn(100)
+
+})
+
+
+
 });

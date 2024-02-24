@@ -28,20 +28,35 @@ function getItems($id){
     $row = $stmt->fetchall() ; 
     return $row ;
 
-}
+} ;
 
 
 
+/*
+    -SELECT FROM BD WITH CONDITION
+    -FUNCTION ACCEPT => [SELECTED & table ^ CONDTION ]
+    -RETURN DATE FROM DATABASE
+*/
+function getData($select , $table ,$condition = " "){
+    global $con ;
+    $stmt = $con->prepare("SELECT '$select' FROM items '$condition'  ") ;
+    $stmt->execute() ;
+    $row = $stmt->fetchall() ; 
+    return $row ;
+} ;
 
-
-
-
-
-
-
-
-
-
+/*
+    -SELECT FROM BD WITH CONDITION
+    -FUNCTION ACCEPT => [SELECTED & table ^ CONDTION ]
+    -RETURN DATE FROM DATABASE
+*/
+function getCount($select , $table ,$condition = " "){
+    global $con ;
+    $stmt = $con->prepare("SELECT $select FROM $table $condition  ") ;
+    $stmt->execute() ;
+    $count = $stmt->rowCount() ; 
+    return $count ;
+} ;
 
 
 

@@ -14,10 +14,22 @@
 
 </head>
 
-<div class="upper-bar">
-    <div class="container">
+    <div class="upper-bar">
+        <div class="container ">
+            <span class="fw-bold"> 
+                <?php if (isset($_SESSION['user']) ) { ?>
+                 
+                    <a href=""> Welcome <?php echo $_SESSION['user']  ?> </a>
+                    <a href="logout.php"> log out </a>
+                    
+                <?php }else{ ?>
+                    
+                    <a href="login.php" class="login" >login</a> | <a href="login.php" class="signup">signup</a>
+
+                <?php } ?>
+            </span>
+        </div>
     </div>
-</div>
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand px-5" href="#">Home Page</a>

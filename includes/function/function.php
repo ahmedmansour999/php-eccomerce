@@ -20,10 +20,10 @@ function getCat(){
 /* 
     - get items of Categories 
 */
-function getItems($id){
+function getItems($where , $value){
 
     global $con ;
-    $stmt = $con->prepare("SELECT * FROM items Where cat_id = '$id' ORDER BY item_id ASC  ") ;
+    $stmt = $con->prepare("SELECT * FROM items Where $where = $value  ORDER BY item_id ASC  ") ;
     $stmt->execute() ;
     $row = $stmt->fetchall() ; 
     return $row ;
@@ -159,7 +159,7 @@ function countItem($item, $table)
  * @return array The latest records.
  */
 
-function getLatest($select, $table, $where = ' ' ,  $order, $limit = 5)
+function getLatest( $select , $table , $where , $order , $limit = 5 )
 {
 
     global $con;
@@ -184,3 +184,30 @@ function stmt($query){
     $stmt->execute();
     return $stmt;
 }
+
+
+/**
+ * Returns the user state if active or not
+ *
+ * @param string $select The columns to select.
+ * @param string $table The table to query.
+ * @param string $order The column to order by.
+ * @param int $limit The maximum number of records to return.
+ * @return array The latest records.
+ */
+
+ function checkUserState($username){
+
+    global $con ;
+
+    $query = "SELECT username , regStatus 
+    FROM users 
+    WHERE username = '$username' 
+    AND regStatus = 0 ";
+    $userStmt = $con->prepare($query) ;
+    $userStmt->execute() ;
+    $count = $userStmt->rowCount() ;
+    
+    return $count ;
+
+ }

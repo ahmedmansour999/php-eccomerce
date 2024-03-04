@@ -122,8 +122,70 @@ h1
 /*End Items of Category   */
 
 
+/* start Profile Style */
+
+.information .container .card .card-body {
+
+    padding: 0;
+
+}
+.information ul 
+{
+    padding: 0;
+}
+.information ul li
+{
+    padding: 15px ;
+}
+
+.information ul li:nth-child(odd){
+
+    background-color: #eee;
+
+}
+
+
+.information  .card-body ul li 
+{
+    display: flex !important;
+}
+
+.information ul li  span{
+    display: inline-block;
+    width: 15%;
+    padding: 0 5px;
+    flex-wrap: nowrap;
+}
 
 
 
+.information .icon a ,
+.ads .icon a ,
+.comments .icon a  
+{
+    cursor: pointer;
+    color: white;
+}
 
 
+/* Add Ad Page */
+
+.ad-form form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+}
+.ad-form form input , .ad-form form textarea
+{
+    outline: none;
+    border: 1px solid gray;
+}
+.ad-form form label
+{
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}

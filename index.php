@@ -1,13 +1,20 @@
 <?php
-session_start() ;
-
-
-include "./int.php"; 
 
 
 
+    session_start() ;
 
-include $tpl .'footer.php' ;
+
+    $pageTitle = "Home" ;
+
+    include "./int.php"; 
+
+
+
+
+
+    include $tpl .'footer.php' ;
+    
 ?>
 
 

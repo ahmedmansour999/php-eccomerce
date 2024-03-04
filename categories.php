@@ -1,14 +1,19 @@
 <?php 
+    session_start() ;
+
+    $pageTitle = "category";
+    
     include "int.php" ;
+
 ?>
 
 
     <div class="container">
-        <h1 class="text-center"><?php  echo str_replace("_" , " " ,  $_GET['pagename'] ) ; ?></h1>  
+        <h1 class="text-center mt-3 text-capitalize"><?php  echo str_replace("_" , " " ,  $_GET['pagename'] ) ; ?></h1>  
         <div class="container">
             <div  class="row ">
             <?php 
-                $items = getItems($_GET['pageid']) ;
+                $items = getItems( 'cat_id' , $_GET['pageid']) ;
                 if (!empty($items)) {
                     foreach($items as $item){?>
                     

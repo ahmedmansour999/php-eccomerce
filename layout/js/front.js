@@ -108,4 +108,36 @@ $('.auth-container h1 span').click(function(){
 
 
 
+
+
+
+// make Live Preview in form
+
+// First Way mark here
+
+// $('.livename').keyup(function () {
+  
+//   $('.live-preview .preview-title').text($(this).val())
+
+// })
+// $('.liveDesctiption').keyup(function () {
+  
+//   $('.live-preview .preview-description').text($(this).val())
+
+// })
+// $('.livePrice').keyup(function () {
+  
+//   $('.live-preview .preview-price').text("$" + $(this).val())
+
+// })
+
+// Secound Way mark here
+
+$('.live').keyup(function () {
+  
+  $($(this).data('class')).text($(this).val())
+
+})
+
+
 });

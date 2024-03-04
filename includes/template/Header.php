@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,15 +18,32 @@
 
     <div class="upper-bar">
         <div class="container ">
-            <span class="fw-bold"> 
-                <?php if (isset($_SESSION['user']) ) { ?>
+            <span class="fw-bold w-100 "> 
+                <?php if(isset($_SESSION['user'])) { ?>
                  
-                    <a href=""> Welcome <?php echo $_SESSION['user']  ?> </a>
-                    <a href="logout.php"> log out </a>
+
+                    <div class="d-flex w-100 justify-content-between text-dark">
+                        <a href="profile.php" class="text-dark" > Welcome <?php echo $_SESSION['user']  ?> </a>
+                        <a href="logout.php"  class="text-dark" > log out </a>
+                    </div>
+
+                    <?PHP 
                     
-                <?php }else{ ?>
+                    $userStatus = checkUserState($_SESSION['user']) ;
+
+                    if( $userStatus == 1  ){
+                        
+                       // Message For Not Active Members
+
+                    }
+
                     
-                    <a href="login.php" class="login" >login</a> | <a href="login.php" class="signup">signup</a>
+                 }else{ ?>
+                    
+                    <div class="d-flex w-100 justify-content-end ">
+                        <a href="login.php" class="login text-dark mx-1" >login</a> | <a href="login.php " class="signup text-dark mx-1 " >signup</a>
+                    </div>
+                    
 
                 <?php } ?>
             </span>
@@ -32,7 +51,7 @@
     </div>
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand px-5" href="#">Home Page</a>
+        <a class="navbar-brand px-5" href="index.php">Home Page</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#app-nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

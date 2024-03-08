@@ -25,7 +25,10 @@ h1
 
 
 
-
+a 
+{
+    text-decoration: none;
+}
 
 
 
@@ -111,9 +114,19 @@ h1
  .items-container .item-price
 {
     position: absolute;
+    background-color: green;
+    padding: 5px;
+    top: 11px;
+    color: white;
+    font-weight: bold;
+}
+ .items-container .item-state
+{
+    position: absolute;
     background-color: firebrick;
     padding: 5px;
     top: 11px;
+    right: 0;
     color: white;
     font-weight: bold;
 }
@@ -167,8 +180,15 @@ h1
     color: white;
 }
 
+ .card-body .date
+{
+    float: right;
+    align-items: center;
+    color: #bb9696;
+    display: contents;
+}
 
-/* Add Ad Page */
+/* Add Ad  */
 
 .ad-form form{
     height: 100%;
@@ -188,4 +208,78 @@ h1
     display: flex;
     justify-content: center;
     font-weight: bold;
+}
+/* items details*/
+
+.item-details .itemdetails-list ul li:nth-child(odd)
+{
+    background-color: #eee;
+
+}
+.item-details .itemdetails-list ul {
+    padding: 0;
+}
+
+.item-details .itemdetails-list ul li
+{
+    list-style: none;
+    padding: 5px;
+}
+.item-details .itemdetails-list ul li span
+{
+    display: inline-block;
+    min-width: 15%;
+    padding: 0 5px;
+}
+
+.add-comment h3
+{
+    padding: 10px 0   ;
+}
+.add-comment form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.add-comment textarea{
+
+    padding: 10px;
+    margin-bottom: 10px;
+    border-color: rgb(240, 151, 166);
+    outline-color: rgb(156, 60, 247);
+
+}
+.comments .img-container 
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+.comments .member-img {
+    width: 100%;
+    max-width: 80px;
+} 
+.comments .comment-text {
+    border-left: 5px solid;
+    background: beige;
+    font-weight: bold;
+    padding: 10px;
+
+}
+.comments .comment-time {
+    color: #929191;
+}
+
+/* Home Page */
+
+.pagintaion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.pagintaion-header .links 
+{
+    border-radius: 0;
 }

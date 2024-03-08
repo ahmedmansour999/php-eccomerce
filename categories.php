@@ -9,11 +9,11 @@
 
 
     <div class="container">
-        <h1 class="text-center mt-3 text-capitalize"><?php  echo str_replace("_" , " " ,  $_GET['pagename'] ) ; ?></h1>  
+        <h1 class="text-center mt-3 text-capitalize"><?php  echo "Category" ; ?></h1>  
         <div class="container">
             <div  class="row ">
             <?php 
-                $items = getItems( 'cat_id' , $_GET['pageid']) ;
+                $items = getItems( 'cat_id' , $_GET['pageid'] , 1) ;
                 if (!empty($items)) {
                     foreach($items as $item){?>
                     
@@ -24,13 +24,15 @@
                                 <img src="https://m.media-amazon.com/images/I/611mRs-imxL._AC_SX679_.jpg" class="card-img-top" alt="...">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">
+                                    <a href="item.php?itemid=<?php echo $item['Item_id'] ?> " class="card-title">
                                         <?php echo $item['Name'] ?>
-                                     </h5>
+                                     </a>
                                     <p class="card-text">
                                         <?php echo $item['Description'] ?>
                                     </p>
                                     <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <span class="date"> <?php echo $item['Date'] ?>  </span>
+
                                 </div>
                                 
                             </div>

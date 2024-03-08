@@ -63,8 +63,28 @@ if (isset($_SESSION["username"])) {
                             <a  class="edite" href="categories.php?href=Edite&id=<?php echo $category['ID'] ;?>"><i class="fas fa-pen-nib "></i>Edite</a>
                         </div>
                     </div>
-                
-                    <?php } ?>
+                                            <!-- Chiled Category  -->
+                    <?php
+                        $condition = "where parent =". $category['ID'] ;
+                        $childCats = getItem('*' , 'categories' , $condition ) ;
+                        if ( !empty($childCats) ) {
+                            echo  '<div class="child px-4 fw-bold">
+                                        <p class="m-0 text-success" >Child Categories</p>
+                                        <div class=" child-link " >
+                                        ' ;
+                            foreach($childCats as $cat){ 
+                                echo "<div class='link'> <p class='m-0 px-5 py-1'>  
+                                            <a class='text-dark' href='categories.php?href=Edite&id=" . $cat['ID'] . "'>" . $cat['name'] . "</a> 
+                                             <a  class='del confirm show-delete text-danger mx-3' href='categories.php?href=Delete&id=' " .  $category['ID'] ."'>Delete</a>
+                                    </p> </div> ";
+                        
+                            }           
+                                    echo  '</div>
+                                    </div>    
+                            ' ;
+                        }
+                    } ?>
+
 
                 </div>
             </div>
@@ -85,6 +105,21 @@ if (isset($_SESSION["username"])) {
                     <div class="form-group form-group-lg">
                         <label class="col-sm-2 control-label">Description</label>
                         <input name="description" type="text" class="col-sm-10 col-md-5" placeholder="Category Description">
+                    </div>
+                    <div class="form-group form-group-lg">
+                        <label class="col-sm-2 control-label">Parent</label>
+                        <select name="parent" id="parent" class="col-sm-10 col-md-5 mb-3 p-1"  >
+                            <option value="0">None</option>
+                            <?php 
+                                $parentCats = getItem('*' , 'categories' , 'where parent = 0' );
+                                foreach($parentCats as $parentCat) {
+                                    
+                            ?>
+                            <option value="<?php echo $parentCat['ID'] ?> ">
+                                        <?php echo $parentCat['name'] ?>
+                            </option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <div class="form-group form-group-lg">
                         <label class="col-sm-2 control-label">Ordering</label>
@@ -163,6 +198,8 @@ if (isset($_SESSION["username"])) {
 
             $allowAds = $_POST["Ads"];
 
+            $parent = $_POST['parent'] ;
+
 
             // check Validation Of Data 
 
@@ -173,8 +210,8 @@ if (isset($_SESSION["username"])) {
                 if ($count == 1) {
                     echo "<div class='alert alert-danger text-center'> Category Name Already Exist </div>";
                 } else {
-                    $query = "INSERT INTO categories (name , description , ordering , allow_comment , allow_ads )
-                    VALUES ( '$name' , '$description' , '$ordering' , '$allowComment' , '$allowAds' )";
+                    $query = "INSERT INTO categories (name , description , parent , ordering , allow_comment , allow_ads )
+                    VALUES ( '$name' , '$description' , '$parent' , '$ordering' , '$allowComment' , '$allowAds' )";
                     $stmt = $con->prepare($query);
                     $stmt->execute();
 
@@ -211,7 +248,8 @@ if (isset($_SESSION["username"])) {
 
         $cat_id = (isset($_GET['id']) && is_numeric($_GET['id'])) ? intval($_GET['id']) : 0;
 
-        $stmtCat = stmt("SELECT * FROM categories WHERE ID =". "$cat_id" ) ;
+        echo $cat_id ;
+        $stmtCat = stmt("SELECT * FROM categories WHERE ID =". $cat_id ) ;
         $cat = $stmtCat->fetch() ;
         $count = $stmtCat->rowCount() ;
 
@@ -234,6 +272,23 @@ if (isset($_SESSION["username"])) {
                         <div class="form-group form-group-lg">
                             <label class="col-sm-2 control-label">Description</label>
                             <input name="description" type="text" class="col-sm-10 col-md-5" placeholder="Category Description" value="<?php echo $cat['description'] ?>" >
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="col-sm-2 control-label">Parent</label>
+                            <select name="parent" id="parent" class="col-sm-10 col-md-5 mb-3 p-1"  >
+                                <option value="0">None</option>
+                                <?php 
+                                
+                                    $parentCats = getItem('*' , 'categories' , 'where parent = 0' );
+                                    foreach($parentCats as $parentCat) {
+                                        
+                                ?>
+                                <option value="<?php echo $parentCat['ID'] ?> " <?php if ($parentCat['ID'] == $cat['parent'] ) {
+                                    echo "selected" ;} ?> >
+                                            <?php echo $parentCat['name'] ?>
+                                </option>
+                                <?php } ?>
+                            </select>
                         </div>
                         <div class="form-group form-group-lg">
                             <label class="col-sm-2 control-label">Ordering</label>
@@ -312,6 +367,8 @@ if (isset($_SESSION["username"])) {
 
             $description = $_POST["description"];
 
+            $parent = $_POST["parent"];
+
             $ordering = $_POST["ordering"];
 
             $visibilty = $_POST["visibilty"];
@@ -324,9 +381,9 @@ if (isset($_SESSION["username"])) {
             // check Validation Of Data 
 
             if (!empty($name) ) {
-           
                 
-                $count = checkItem('name', 'categories', $name);
+                $exeptionId = "AND id != '$id' " ;
+                $count = checkItem('name', 'categories', $name , $exeptionId );
 
                 if ($count == 1) {
 
@@ -336,6 +393,7 @@ if (isset($_SESSION["username"])) {
                     $query = "UPDATE categories 
                         SET name='$name', 
                             description='$description', 
+                            parent='$parent', 
                             ordering='$ordering', 
                             allow_comment='$allowComment', 
                             allow_ads='$allowAds' 

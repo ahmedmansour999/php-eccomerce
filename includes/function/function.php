@@ -9,7 +9,7 @@
 function getCat(){
 
     global $con ;
-    $stmt = $con->prepare('SELECT * FROM categories ORDER BY ID ASC') ;
+    $stmt = $con->prepare('SELECT * FROM categories where parent = "0" ORDER BY ID ASC') ;
     $stmt->execute() ;
     $row = $stmt->fetchall() ; 
     return $row ;
@@ -20,10 +20,26 @@ function getCat(){
 /* 
     - get items of Categories 
 */
-function getItems($where , $value){
+function getItems($where , $value , $sta = NULL ){
 
     global $con ;
-    $stmt = $con->prepare("SELECT * FROM items Where $where = $value  ORDER BY item_id ASC  ") ;
+    
+    if ($sta == 1 ) {
+    
+        $sta = "AND APPROVE = '1' " ;
+
+    }else if ($sta == 0) {
+
+        $sta = 'AND APPROVE = "0" ' ;
+
+    }else{
+
+        $sta = NULL ;
+
+    }   
+
+
+    $stmt = $con->prepare("SELECT * FROM items Where $where = $value $sta ORDER BY item_id ASC  ") ;
     $stmt->execute() ;
     $row = $stmt->fetchall() ; 
     return $row ;
@@ -42,6 +58,15 @@ function getData($select , $table ,$condition = " "){
     $stmt = $con->prepare("SELECT '$select' FROM items '$condition'  ") ;
     $stmt->execute() ;
     $row = $stmt->fetchall() ; 
+    return $row ;
+} ;
+
+
+function globalData($select , $table ,$condition = null){
+    global $con ;
+    $stmt = $con->prepare("SELECT '$select' FROM $table $condition  ") ;
+    $stmt->execute() ;
+    $row = $stmt->fetchAll() ; 
     return $row ;
 } ;
 
@@ -211,3 +236,49 @@ function stmt($query){
     return $count ;
 
  }
+
+ /*
+    - Select All Data with Pagination 
+    - Accept Paramater (Table)
+    - $tabel -> table name from database
+    - $itemNum -> number of item in one Page 
+    -
+ */
+function paginationPages( $table , $itemNum  ){
+
+    global $con ; 
+    $perPage = $itemNum ; 
+
+    // Retrieve total number of items
+    $stmt = $con->prepare("SELECT COUNT(*) As totalItems FROM $table") ;
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $totalItems = $row['totalItems'] ;
+
+    // Calculate total pages
+    $totalPages = ceil($totalItems / $perPage) ; 
+
+    return $totalPages ; 
+
+}
+function paginationData($table , $condition  , $order ,$itemNum , $currentPage){
+
+        global $con ; 
+        $perPage = $itemNum ; 
+
+        // Determine current page
+        $page = $currentPage ;
+
+        // number of items i need skip 
+        $startingLimit = ($page - 1) * $perPage ;
+    
+        // Retrieve items for current page
+        $query = "SELECT * FROM $table $condition ORDER BY $order DESC LIMIT $startingLimit,$perPage " ;
+        $stmt = $con->prepare($query);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data ;
+
+}
+

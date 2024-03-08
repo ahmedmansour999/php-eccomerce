@@ -86,4 +86,15 @@ $(document).ready(function () {
   })
 
 
+  // hover Child Category 
+
+  $('.link').hover(function () {
+
+    $(this).find('.show-delete').fadeIn()
+
+  }, function () {
+
+    $(this).find('.show-delete').fadeOut()
+  } )
+
 });

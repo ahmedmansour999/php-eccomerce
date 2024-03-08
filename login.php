@@ -51,7 +51,7 @@
             if ($count > 0) {
 
                 $_SESSION['user'] = $username;
-                $_SESSION['ID'] = $row['user_id'];
+                $_SESSION['Uid'] = $row['user_id'];
                 $_SESSION['password'] = $row['password'];
                 header('location:index.php') ;
                 exit() ;

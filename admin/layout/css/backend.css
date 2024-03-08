@@ -14,6 +14,11 @@ body
     text-align: center;
 }
 
+a{
+    text-decoration: none;
+    
+}
+
 
 
 /* End Body Style */
@@ -276,6 +281,11 @@ form input
     color: white !important;
     margin: 5px 0;
 
+}
+
+.show-delete
+{
+    display: none;
 }
 
 /* ############################################################# */

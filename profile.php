@@ -77,7 +77,7 @@
                 
                 <div class="card-body row">
                 <?php 
-                $items = getItems( 'member_id' , $info['user_id']) ;
+                $items = getItems( 'member_id' , $info['user_id'] , '*' ) ;
                 if (!empty($items)) {
                     foreach($items as $item){?>
                     
@@ -85,16 +85,18 @@
                         <div class="col-sm-6 col-md-4 col-lg-3 mb-3 mb-sm-0">
                             <div class="card items-container " >
                                 <div class="item-price"> <?php echo $item['Price'] ?>  </div>
+                                <?php  echo $item['approve'] == '0' ? "<div class='item-state'> Pending </div>" : "" ?>  
                                 <img src="https://m.media-amazon.com/images/I/611mRs-imxL._AC_SX679_.jpg" class="card-img-top" alt="...">
 
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <?php echo $item['Name'] ?>
+                                       <a href="item.php?itemid=<?php echo $item['Item_id'] ?> "> <?php echo $item['Name'] ?> </a>
                                      </h5>
                                     <p class="card-text">
                                         <?php echo $item['Description'] ?>
                                     </p>
                                     <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <span class="date"> <?php echo $item['Date'] ?>  </span>
                                 </div>
                                 
                             </div>

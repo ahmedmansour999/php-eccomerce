@@ -23,8 +23,19 @@
                  
 
                     <div class="d-flex w-100 justify-content-between text-dark">
-                        <a href="profile.php" class="text-dark" > Welcome <?php echo $_SESSION['user']  ?> </a>
-                        <a href="logout.php"  class="text-dark" > log out </a>
+                        
+                        <div class="dropdown my-info">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?php echo $sessionUser ?>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Two</a></li>
+                                <li><a class="dropdown-item" href="#">Three</a></li>
+                            </ul>
+                        </div>
+
+
                     </div>
 
                     <?PHP 
@@ -33,7 +44,7 @@
 
                     if( $userStatus == 1  ){
                         
-                       // Message For Not Active Members
+                        
 
                     }
 
@@ -60,7 +71,7 @@
                 <?php 
                 $allCat = getCat();
                 foreach ($allCat as $cat) { 
-                    echo "<li class='nav-item '><a class='nav-link ' href='categories.php?pageid=". $cat['ID']."&pagename=". str_replace(' ' , "_" , $cat['name']) ."'>" . $cat['name'] . "</a></li>";
+                    echo "<li class='nav-item '><a class='nav-link ' href='categories.php?pageid=". $cat['ID'] . "'>" . $cat['name'] . "</a></li>";
                 }
                 ?>
             </ul>

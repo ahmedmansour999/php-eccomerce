@@ -65,7 +65,7 @@ if (isset($_SESSION['username'])) {
                                 <a href="?href=Edite&id=<?php echo $row['id'] ?>" class="btn btn-warning"><i class="fas fa-pen-fancy px-1 text-dark"></i>Edite</a>
                                 <a href="?href=delete&id=<?php echo $row['id'] ?>" class="btn btn-danger confirm"><i class="fas fa-trash px-1"></i>delete</a>
                                  <?php if ($row['status'] == 0) { ?>
-                                        <a href="?href=accept&id=<?php echo $row['id'] ?>" class="btn btn-primary "><i class="fas fa-check mx-1"></i>Accept</a>
+                                        <a href="?href=active&id=<?php echo $row['id'] ?>" class="btn btn-primary "><i class="fas fa-check mx-1"></i>Accept</a>
                                     <?php } ?>
                                 </td>
                             </tr>
@@ -182,22 +182,26 @@ if (isset($_SESSION['username'])) {
         }
     }
     elseif ($href == "active") {
-        echo "<h1 class='text-center'> Active Member  </h1>";
+        echo "<h1 class='text-center'> Accept Comment  </h1>";
         echo "<div class='container text-center'> ";
 
         $id = (isset($_GET['id']) && is_numeric($_GET['id'])) ? intval($_GET['id']) : 0;
-        $query = "UPDATE users SET status = 1 WHERE id = '$id'";
+        echo $id ;
+        $query = "UPDATE comments SET status = '1' WHERE id = '$id'";
         $stmt = $con->prepare($query);
+        $stmt->execute();
         $count = $stmt->rowCount();
 
+
+        
         if ($count > 0) {
 
-            $theMsg = '<div class="alert alert-primary"> Active </div> ';
-            HomeRedirect($theMsg);
+            $theMsg = '<div class="alert alert-primary"> Accepted </div> ';
+            HomeRedirect($theMsg , 'comment.php');
 
         } else {
             $theMsg = '<div class="alert alert-danger"> ID not Exist </div>';
-            HomeRedirect($theMsg);
+            HomeRedirect($theMsg , 'comment.php');
         }
     }
 

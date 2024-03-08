@@ -73,7 +73,7 @@ if (isset($_SESSION["username"])) {
                                 <td><?php echo $row['Status'] ?></td>
                                 <td><?php echo $row['users'] ?></td>
                                 <td><?php echo $row['category'] ?></td>
-                                <td> 
+                                <td class="text-nowrap" > 
                                         <a href="?href=Edite&itemid=<?php echo $row['Item_id'] ?>" class="btn btn-warning"><i class="fas fa-pen-fancy px-1 text-dark"></i>Edite</a>
                                         <a href="?href=delete&itemid=<?php echo $row['Item_id'] ?>" class="btn btn-danger confirm"><i class="fas fa-trash px-1"></i>Delete</a>
                                     <?php if ($row['approve'] == '0' ) { ?>
@@ -115,6 +115,7 @@ if (isset($_SESSION["username"])) {
                         <label for="country" class="input-group-text"> Country </label>
                         <input type="text" id="country" name="country" placeholder="Item country Made" class="m-0 px-1 " required>
                     </div>
+                    
                     <!-- Select Status Of Item -->
                     <div class="input-group">
                         <label for="status" class="input-group-text">Item status</label>
@@ -150,6 +151,10 @@ if (isset($_SESSION["username"])) {
                             ?>
                         </select>
                     </div>
+                    <div class="input-group">
+                        <label for="tags" class="input-group-text">Item tags</label>
+                        <input type="text" id="tags" name="tags" placeholder="Item tags" class="m-0 px-1 " required>
+                    </div>
                     <div class="input-group justify-content-end">
                         <button class="btn btn-dark fw-bold" ><i class="fas fa-plus" ></i> Add </button>
                     </div>
@@ -182,6 +187,8 @@ if (isset($_SESSION["username"])) {
             $user = $_POST["user"];
 
             $cat = $_POST["category"];
+
+            $tags = $_POST["tags"];
     
     
     
@@ -212,6 +219,11 @@ if (isset($_SESSION["username"])) {
     
                 $HandleError[] = ' Country Made Cant Be <strong?> Empty </strong> ';
             }
+            if (empty($tags)) 
+            {
+    
+                $HandleError[] = ' Tags Cant Be <strong?> Empty </strong> ';
+            }
             if (empty($status) || $status == '0') 
             {
     
@@ -240,8 +252,8 @@ if (isset($_SESSION["username"])) {
                  
 
                 $query = "INSERT INTO items 
-                    (name , Description , Price , Status , Country_Made , Date  , member_id , cat_id )  
-                        VALUES ( '$name' , '$desc' , '$price' , '$status' , '$country' , now() , '$user' , '$cat' )";
+                    (name , Description , Price , Status , Country_Made , Date , tags , member_id , cat_id )  
+                        VALUES ( '$name' , '$desc' , '$price' , '$status' , '$country' , now() , '$tags' , '$user' , '$cat' )";
                 $stmt = $con->prepare($query);
                 $stmt->execute();
 
@@ -343,6 +355,10 @@ if (isset($_SESSION["username"])) {
                                         ?>
                                     </select>
                                 </div>
+                                <div class="input-group">
+                                    <label for="tags" class="input-group-text">Item tags</label>
+                                    <input type="text" id="tags" name="tags" placeholder="Item tags" class="m-0 px-1 "  value=" <?php echo $row['tags'] ?>" required>
+                                </div>
                                 <div class="input-group justify-content-end">
                                     <button class="btn btn-dark fw-bold" > update </button>
                                 </div>
@@ -439,6 +455,8 @@ if (isset($_SESSION["username"])) {
             $user = $_POST["user"];
 
             $cat = $_POST["category"];
+            
+            $tags = $_POST["tags"];
     
     
     
@@ -497,7 +515,7 @@ if (isset($_SESSION["username"])) {
                  
 
                 $query = "UPDATE items 
-                SET Name = '$name' , Description = '$desc' , Price = '$price' , Country_made = '$country' , member_id = '$user' , cat_id = '$cat' , Status = '$status' where Item_id = '$id'" ;
+                SET Name = '$name' , Description = '$desc' , Price = '$price' , Country_made = '$country' , tags = '$tags'  , member_id = '$user' , cat_id = '$cat' , Status = '$status' where Item_id = '$id'" ;
                 stmt($query) ;
 
                 echo  '

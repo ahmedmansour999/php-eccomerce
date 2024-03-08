@@ -16,6 +16,20 @@ function getTitle()
     }
 }
 
+/*
+    - Global Function
+*/
+
+function getItem($select , $table , $condition){
+
+    global $con;
+    $query = "SELECT $select FROM $table $condition ";
+    $statment = $con->prepare($query);
+    $statment->execute();
+    $row = $statment->fetchAll() ;
+    return $row ;
+} ;
+
 
 
 /*
@@ -26,7 +40,7 @@ function getTitle()
      * $sec = secound Before redirect
     */
 
-function HomeRedirect($errorMsg, $url = null, $sec = 3)
+function HomeRedirect($errorMsg, $url = null, $sec = 1)
 {
 
     if ($url === null) {
@@ -55,11 +69,11 @@ function HomeRedirect($errorMsg, $url = null, $sec = 3)
  * @return int The number of rows.
  */
 
-function checkItem($select, $table, $value)
+function checkItem($select, $table, $value , $exeptionId = null )
 {
 
     global $con;
-    $query = "SELECT $select FROM $table WHERE $select = ?";
+    $query = "SELECT $select FROM $table WHERE $select = ? $exeptionId ";
     $statment = $con->prepare($query);
     $statment->execute(array($value));
     $count = $statment->rowCount();
@@ -128,3 +142,5 @@ function stmt($query){
     $stmt->execute();
     return $stmt;
 }
+
+
